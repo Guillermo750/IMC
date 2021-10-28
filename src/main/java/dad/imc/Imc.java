@@ -22,12 +22,10 @@ public class Imc extends Application {
 	private HBox pesaHBox;
 	private HBox mideHBox;
 	private HBox imcHBox;
-	private HBox tipoHBox;
 	private Label pesoLabel;
 	private Label kgLabel;
 	private Label alturaLabel;
 	private Label cmLabel;
-	private Label imcLabel;
 	private Label resultadoLabel;
 	private Label tipoPesoLabel;
 	
@@ -38,20 +36,22 @@ public class Imc extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		
-		pesoLabel = new Label("Peso: ");
+		pesoLabel = new Label("Peso:");
 		pesoText = new TextField();
-		kgLabel = new Label(" kg");
+		pesoText.setPrefColumnCount(5);
+		pesoText.setAlignment(Pos.CENTER);
+		kgLabel = new Label("kg");
 		
-		alturaLabel = new Label("Altura: ");
+		alturaLabel = new Label("Altura:");
 		alturaText = new TextField();
-		cmLabel = new Label(" cm");
-		
-		imcLabel = new Label("IMC: ");
-		resultadoLabel = new Label("(peso*altura^2)");
+		alturaText.setPrefColumnCount(5);
+		alturaText.setAlignment(Pos.CENTER);
+		cmLabel = new Label("cm");
+	
+		resultadoLabel = new Label("IMC: (peso*altura^2)");
 		tipoPesoLabel = new Label("Bajo peso | Normal | Sobrepeso | Obeso");
-		
 					
-		VBox root = new VBox(2);
+		VBox root = new VBox(5);
 		root.setAlignment(Pos.CENTER);
 		root.setFillWidth(false);
 		
@@ -63,17 +63,13 @@ public class Imc extends Application {
 		mideHBox.setAlignment(Pos.CENTER);
 		mideHBox.getChildren().addAll(alturaLabel,alturaText,cmLabel);
 		
-		imcHBox = new HBox(2);
+		imcHBox = new HBox();
+		imcHBox.setSpacing(1);
 		imcHBox.setAlignment(Pos.CENTER);
-		imcHBox.getChildren().addAll(imcLabel,resultadoLabel);
 		
-		tipoHBox = new HBox(1);
-		tipoHBox.setAlignment(Pos.CENTER);
-		tipoHBox.getChildren().addAll(tipoPesoLabel);
+		root.getChildren().addAll(pesaHBox,mideHBox,imcHBox,resultadoLabel,tipoPesoLabel);
 		
-		root.getChildren().addAll(pesaHBox,mideHBox,imcHBox,tipoHBox);
-		
-		Scene scene = new Scene(root, 320, 200);
+		Scene scene = new Scene(root, 300, 200);
 	
 		primaryStage.setTitle("IMC.fxml");
 		primaryStage.setScene(scene);
